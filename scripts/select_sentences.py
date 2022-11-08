@@ -27,19 +27,22 @@ def filter_sentence(document):
     for i in index_leave:
       filter[a][i+top] = 1
   filter = sum(filter,[])
-  document['filter_sentences'] = filter
+  filtered_sentetnces = []
+  for s in range(len(sentences)):
+    if filter[s] == 1:
+      filtered_sentetnces.append(str(sentences[s]))
+  document['document'] = filtered_sentetnces
   return document
 
-dataset = dataset.add_column("filter_sentences", [[0]] * len(dataset))
 
 start  = time.time()
 print('started')
 print("cpu count:", os.cpu_count())
-d = dataset.map(filter_sentence, num_proc = 48)
+filtered_dataset = dataset.map(filter_sentence, num_proc = 48)
 end = time.time()
 print("map ended")
 print('save dataset')
 
-d.save_to_disk("/scratch/kd1860/DSGA_1006_capstone/dataset/filtered_dataset") #实际上只是加了一个column，要存一个新的dataset吗
+filtered_dataset.save_to_disk("/scratch/kd1860/DSGA_1006_capstone/dataset/filtered_dataset") 
 
 print (end-start)
