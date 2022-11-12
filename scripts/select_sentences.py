@@ -9,10 +9,10 @@ nlp = spacy.load("en_core_web_sm")
 dataset = load_from_disk("/scratch/kd1860/DSGA_1006_capstone/dataset/scored_dataset_test500")
 
 def filter_sentence(document):
-  percentage = 0.8 #percentage to keep
+  percentage = 0.7 #percentage to keep
   top = 5 # keep first t sentences 
-  sentences = list(nlp(document['document']).sents)
-  pointers = [i for i in range(len(sentences)) if '|||||' in sentences[i].text] #seperate articles
+  sentences = document['document']
+  pointers = [i for i in range(len(sentences)) if '|||||' in sentences[i]] #seperate articles
   scores = document['rouge_scores']
   filter = []
   score_splits = [sl.tolist()for sl in np.split(scores, pointers)]
@@ -26,12 +26,11 @@ def filter_sentence(document):
       filter.append([1]*(len(score_splits[a])))
     for i in index_leave:
       filter[a][i+top] = 1
-  filter = sum(filter,[])
-  filtered_sentetnces = []
-  for s in range(len(sentences)):
-    if filter[s] == 1:
-      filtered_sentetnces.append(str(sentences[s]))
+  filter = list(map(bool,sum(filter,[])))
+  filtered_sentetnces = np.array(sentences)[filter]
+  filtered_scores = np.array(np.array(scores))[filter]
   document['document'] = filtered_sentetnces
+  document['rouge_scores'] = filtered_scores
   return document
 
 
