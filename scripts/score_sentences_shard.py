@@ -18,7 +18,7 @@ scorer = rouge_scorer.RougeScorer(['rouge1'], use_stemmer=True)
 nlp = spacy.load("en_core_web_sm")
 nlp.max_length = 5000000
 
-dataset = load_dataset('multi_news', split='train')
+dataset = load_dataset('multi_news', split='test')
 
 def score_sentence(document):
     text = document['document']
@@ -64,7 +64,7 @@ dataset = dataset.add_column("entity_counts", [[0]] * len(dataset))
 
 if len(sys.argv) >= 2:
     shard = int(sys.argv[1])
-    dataset = dataset.shard(num_shards=40, index=shard)
+    dataset = dataset.shard(num_shards=5, index=shard)
 
 
 start  = time.time()
@@ -77,7 +77,7 @@ print('save dataset')
 
 
 
-save_dir = "/scratch/kd1860/DSGA_1006_capstone/dataset/processed_shards/shard_"+str(shard)
+save_dir = "/scratch/kd1860/DSGA_1006_capstone/dataset/multi_news_test_processed/shard_"+str(shard)
 print(save_dir)
 d.save_to_disk(save_dir)
 

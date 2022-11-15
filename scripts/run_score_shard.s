@@ -2,12 +2,12 @@
 
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=2
-#SBATCH --array=0-1
+#SBATCH --array=0-4
 #SBATCH --cpus-per-task=2
 #SBATCH --time=5:00:00
 #SBATCH --mem=64GB
 #SBATCH --partition=cs
-#SBATCH --job-name=test_kd1860
+#SBATCH --job-name=score_sent
 #SBATCH --output=../dataset/outputs/shard_%A_%a.out
 #SBATCH --error=../dataset/outputs/shard_%A_%a.err
 
