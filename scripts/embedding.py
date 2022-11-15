@@ -10,6 +10,7 @@ import sklearn.metrics as metrics
 
 nlp = spacy.load("en_core_web_sm")
 dataset = load_from_disk("/scratch/kd1860/DSGA_1006_capstone/dataset/filtered_dataset")
+#load model
 model = SentenceTransformer('distilbert-base-nli-mean-tokens')
 
 
