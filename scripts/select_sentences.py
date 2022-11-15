@@ -4,6 +4,7 @@ import numpy as np
 import spacy
 import time 
 import os
+import sys
 
 nlp = spacy.load("en_core_web_sm")
 dataset = load_from_disk("/scratch/kd1860/DSGA_1006_capstone/dataset/multi_news_test_processed/shard_"+sys.argv[1])
