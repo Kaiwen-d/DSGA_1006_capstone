@@ -10,7 +10,7 @@ dataset = load_from_disk("/scratch/kd1860/DSGA_1006_capstone/dataset/scored_data
 
 def filter_sentence(document):
   percentage = 0.8 #percentage to keep
-  top = 5 # keep first t sentences 
+  top = 3 # keep first t sentences 
   sentences = list(nlp(document['document']).sents)
   pointers = [i for i in range(len(sentences)) if '|||||' in sentences[i].text] #seperate articles
   scores = document['rouge_scores']
