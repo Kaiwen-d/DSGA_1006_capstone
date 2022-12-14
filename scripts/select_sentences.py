@@ -31,6 +31,7 @@ def filter_sentence(document):
   filter = list(map(bool,sum(filter,[])))
   filtered_sentetnces = np.array(sentences)[filter]
   filtered_scores = np.array(np.array(scores))[filter]
+
   document['document'] = filtered_sentetnces.tolist()
   document['rouge_scores'] = filtered_scores.tolist()
   return document
