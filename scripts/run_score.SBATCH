@@ -6,7 +6,7 @@
 #SBATCH --time=24:00:00
 #SBATCH --mem=128GB
 #SBATCH --partition=cs
-#SBATCH --job-name=test_kd1860
+#SBATCH --job-name=test_sl6246
 #SBATCH --output=test.out
 #SBATCH --error=error.err
 
