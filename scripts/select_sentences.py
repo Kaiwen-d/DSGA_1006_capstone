@@ -14,6 +14,7 @@ def filter_sentence(document):
   top = 3 # keep first t sentences 
   sentences = document['document']
   pointers = [i for i in range(len(sentences)) if '|||||' in sentences[i]] #seperate articles
+
   scores = document['rouge_scores']
   filter = []
   score_splits = [sl.tolist()for sl in np.split(scores, pointers)]
