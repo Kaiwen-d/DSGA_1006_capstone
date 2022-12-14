@@ -7,7 +7,7 @@ several sentences using multi-document summarization model, in order to make
 information retrieval more efficient. 
 
 This Github includes implementations for the preprocessing steps: filtering and clustering, and summarization with PEGASUS and BERT summarization model. 
-These steps are applied on two datasets: Multi-News public dataset and Moody's news dataset.
+These steps are applied to two datasets: Multi-News public dataset and Moody's news dataset.
 
 ## Step by step python scripts for multi_news dataset:
 - Get rouge score for each sentence: score_sentences_shard.py
